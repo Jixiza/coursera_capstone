@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <>
       <Nav />
       <Header />
       <main>
@@ -14,7 +14,7 @@ function App() {
         <section></section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
