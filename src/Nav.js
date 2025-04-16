@@ -1,12 +1,18 @@
 import logo from './assets/logo.svg';
+import { useState } from "react";
 
 
-function Nav() {
+function Nav(props) {
+  const [buttonStatus, setButtonStatus] = useState();
+  const handleClick = () => {
+    setButtonStatus(false)
+    return props.buttonStatus(buttonStatus)
+  }
   return (
     <nav>
       <img src={logo} alt="Little Lemon logo with a name of the restaurant" />
         <ul>
-              <li><a href="/">Home</a></li>
+        <li><a  onClick={handleClick}>Home</a></li>
               <li><a>About</a></li>
               <li><a>Menu</a></li>
               <li><a>Reservation</a></li>

@@ -56,7 +56,7 @@ const testimonials = {
 
 function Main(props) {
 
-    if (props.opt1 === true) {
+    if (props.opt1 === false) {
         //Main sections for homepage
         return (
             <main>
@@ -93,13 +93,19 @@ function Main(props) {
                 </section>
             </main>
         );
-    } else if (props.opt1 === false) {
+    } else if (props.opt1 === true) {
         //Main sections for table ordering
             return(
                     <main>
                 <section><p>Definetly another text</p></section>
                 </main >
             );
+    } else {
+        return (
+            <main>
+                <section><p>not working</p></section>
+                </main >
+        )
     }
 }
 
