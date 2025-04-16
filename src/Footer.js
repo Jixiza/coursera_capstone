@@ -7,7 +7,7 @@ function Footer() {
           <div>
               <h3>Dormant navigation</h3>
             <ul>
-              <li><a>Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a>About</a></li>
               <li><a>Menu</a></li>
               <li><a>Reservation</a></li>

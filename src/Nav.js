@@ -6,7 +6,7 @@ function Nav() {
     <nav>
       <img src={logo} alt="Little Lemon logo with a name of the restaurant" />
         <ul>
-              <li><a>Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a>About</a></li>
               <li><a>Menu</a></li>
               <li><a>Reservation</a></li>
