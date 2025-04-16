@@ -1,9 +1,12 @@
+html {
+  background-color: #edefee;
+}
 nav {
   display: flex;
-  padding: 20px;
   font-size: 16pt;
-  font-family: Karla;
+  font-family: "Karla";
   color: #495e57;
+    justify-content: space-evenly;
 
 }
 nav a {
@@ -21,24 +24,83 @@ nav li {
 }
 header {
   background-color: #495e57;
+  display: flex;
+  justify-content: space-evenly;
+}
+header h1 {
+  font-size: 64pt;
+  font-family: "Markazi text";
+  color: #f4ce14;
+  margin-top: 0%;
+}
+
+header h3 {
+ font-size: 20pt;
+ margin-top: -10%;
+ color: #edefee;
+}
+
+header p {
+  max-width: 50vw;
+  color: #edefee
+}
+
+header img {
+ max-height: 300px;
+ align-items: flex-end;
+}
+
+#button {
+  width: 200px;
+  height: 40px;
+  display: inline-block;
+  background-color: #f4ce14;
+  border-radius: 16pt;
+  text-align: center;
+  font-size: 16pt;
+  color: #495e57;
+  font-family: "Karla";
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#highlights {
+  display: flex;
+    justify-content: space-evenly;
+}
+
+#specials {
+  width: 25%;
+}
+
+#specials img {
+  width: 100%;
 }
 
 footer {
   display: flex;
   padding: 20px;
   background-color: #495e57;
+  justify-content: space-evenly;
 }
 footer img{
   max-height: 200px;
 }
 footer div{
-  padding: 20px;
-  max-width: 25%;
+  max-width: 25%; 
 
 }
 footer li {
    list-style-type: none;
    padding: 2px 0px;
-    margin-left: -30px;
+    margin-left: -30px; 
+      font-size: 16pt;
+  font-family: Karla;
+    color: #edefee;
 
+}
+
+footer a:link, footer a:visited {
+      color: #edefee;
 }

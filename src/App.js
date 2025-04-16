@@ -5,7 +5,7 @@ import Main from './Main.js';
 import './App.css';
 
 function App() {
-  const pressed = false;
+  const pressed = true;
   return (
     <>
       <Nav />
