@@ -54,16 +54,18 @@ const testimonials = {
 }
 
 
-function Main(props) {
+function Home(props) {
+     const goNone = () => {
+    let buttonStatus = "nothing";
+    return props.buttonStatus(buttonStatus)
+  }
 
-    if (props.opt1 === false) {
-        //Main sections for homepage
         return (
             <main>
                 <section id="highlights">
                     <div id="container1">
                     <h2>Specials</h2>
-                    <Button text="Online menu"/>
+                    <Button text="Online menu" buttonStatus={goNone}/>
                     </div>
                     <div id="container2"> 
                     <MenuElem {...menu.salad}/>
@@ -93,21 +95,9 @@ function Main(props) {
                 </section>
             </main>
         );
-    } else if (props.opt1 === true) {
-        //Main sections for table ordering
-            return(
-                    <main>
-                <section><p>Definetly another text</p></section>
-                </main >
-            );
-    } else {
-        return (
-            <main>
-                <section><p>not working</p></section>
-                </main >
-        )
+
     }
-}
 
 
-export default Main
+
+export default Home

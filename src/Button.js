@@ -1,10 +1,11 @@
-import { useState } from "react";
+
 
 function Button(props) {
-    const [buttonStatus, setButtonStatus] = useState();
+
   const handleClick = () => {
-    setButtonStatus(true)
-    alert("you have clicked")
+
+    let buttonStatus = true;
+ 
     return props.buttonStatus(buttonStatus)
   }
   return (

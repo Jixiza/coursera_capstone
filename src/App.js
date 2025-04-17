@@ -1,21 +1,47 @@
 import Footer from './Footer.js';
 import Header from './Header.js';
 import Nav from './Nav.js';
-import Main from './Main.js';
+import Home from './Home.js';
+import Order from './Order.js';
+import Forms from './Forms.js';
+import Nothing from './Nothing.js';
 import { useState } from "react";
 import './App.css';
+import HeaderOrder from './HeaderOrder.js';
 
+
+
+
+  
 function App() {
-  const [orderButton, setOrderButton] = useState(false)
+  const [orderButton, setOrderButton] = useState("home");
+  // const [nothing,setNothing] = useState("");
+  function handleClick(e){
+    return setOrderButton(e) 
+  }
+
+  let block1;
+  let block2;
+  if (orderButton === "home") {
+    block1 = <Header buttonStatus={e => setOrderButton(e) }/>
+     block2 = <Home buttonStatus={e => setOrderButton(e) }/>
+  } else if (orderButton === "order") {
+    block1 = <HeaderOrder buttonStatus={e => setOrderButton(e) }/>
+     block2 = <Order />
+  } else if(orderButton === "nothing"){
+    block2 = <Nothing />
+   }
  
+  
   return (
     <>
-      <Nav buttonStatus={e => setOrderButton(e) }/>
-      <Header buttonStatus={e => setOrderButton(e) }/>
-      <Main opt1={ orderButton}/>
-      <Footer />
-    </>
-  );
+      <Nav buttonStatus={handleClick}/>
+      {block1}
+      {block2}
+      <Footer buttonStatus={handleClick}/>
+     </>
+
+  )
 }
 
 export default App;
