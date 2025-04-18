@@ -2,7 +2,7 @@ import Button from "./Button";
 import MenuElem from "./MenuElem";
 import TestimElem from "./TestimElem.js"
 import salad from "./assets/greek_salad.jpg"
-import bread from "./assets/bruchetta.svg"
+import bread from "./assets/bruchetta.jpg"
 import dessert from "./assets/lemon_dessert.jpg"
 import johanes from "./assets/johanes.jpg"
 import matilda from "./assets/matilda.jpg"

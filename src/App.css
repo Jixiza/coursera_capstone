@@ -130,7 +130,7 @@ header img {
 
 #testimElems > img{
   width: 100%;
-  border-radius: 67pt;
+  border-radius: 50%;
 }
 
 #testimElems div {
@@ -171,6 +171,7 @@ margin-top: -15px;
 
 #about img{
   height: 200px;
+
   border-radius: 40pt;
 }
 
@@ -193,13 +194,12 @@ margin-top: -15px;
   display: flex;
  
 }
-#none {
+
+#resDateTime{
   display: flex;
-  justify-content: center;
-  font-size: 40pt;
-  color: #495e57;
-  font-family: "Markazi text";
+    justify-content: space-evenly;
 }
+
 #ordertitle {
 
   text-align: center;
@@ -213,6 +213,47 @@ margin-top: -15px;
 #ordertitle p {
     color: #495e57;
     font-size: 16pt;
+}
+
+#PersonSelector input {
+  border-radius: 25pt;
+  width: 40px;
+}
+#PersonSelector input::placeholder{
+  text-align: center;
+}
+
+#selectorInfoBlank{
+  margin-top: 0px;
+
+}
+
+#selectorInfo{
+  /* margin-top: 0px; */
+
+}
+
+#infoText {
+  /* margin: 0px;
+  padding: 0px; */
+  height: 25px;
+}
+
+#PersonSelector input[type=number]::-webkit-inner-spin-button,
+#PersonSelector input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#PersonSelector input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+#PersonSelector button{
+  border-radius: 50%;
+  font-style: bold;
 }
 
 footer {
@@ -242,4 +283,11 @@ footer a:link, footer a:visited {
       color: #edefee;
 }
 
+#none {
+  display: flex;
+  justify-content: center;
+  font-size: 40pt;
+  color: #495e57;
+  font-family: "Markazi text";
+}
 
