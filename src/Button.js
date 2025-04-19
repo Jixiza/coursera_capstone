@@ -9,9 +9,9 @@ function Button(props) {
     return props.buttonStatus(buttonStatus)
   }
   return (
-    <div id="button" onClick={handleClick}>
+    <button type={ props.type} id="button" onClick={handleClick}>
           <span>{props.text}</span>
-    </div>
+    </button>
   );
 }
 

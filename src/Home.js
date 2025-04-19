@@ -65,7 +65,7 @@ function Home(props) {
                 <section id="highlights">
                     <div id="container1">
                     <h2>Specials</h2>
-                    <Button text="Online menu" buttonStatus={goNone}/>
+                    <Button text="Online menu" type="button"buttonStatus={goNone}/>
                     </div>
                     <div id="container2"> 
                     <MenuElem {...menu.salad}/>

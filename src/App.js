@@ -3,7 +3,7 @@ import Header from './Header.js';
 import Nav from './Nav.js';
 import Home from './Home.js';
 import Order from './Order.js';
-import Forms from './Forms.js';
+import FormsReserve from './FormsReserve';
 import Nothing from './Nothing.js';
 import { useState } from "react";
 import './App.css';
@@ -19,6 +19,13 @@ function App() {
   function handleClick(e){
     return setOrderButton(e) 
   }
+  const [formData, setFormData] = useState({
+    date: "",
+    time: "",
+    diners: "0",
+    ocassion: "none",
+});
+
 
   let block1;
   let block2;
@@ -27,7 +34,7 @@ function App() {
      block2 = <Home buttonStatus={e => setOrderButton(e) }/>
   } else if (orderButton === "order") {
     block1 = <HeaderOrder buttonStatus={e => setOrderButton(e) }/>
-     block2 = <Order />
+    block2 = <Order dataLift={e => setFormData(e) }/>
   } else if(orderButton === "nothing"){
     block2 = <Nothing />
    }

@@ -1,6 +1,6 @@
 
 
-function Forms() {
+function FormsReserve() {
     return (
         <main>
             <section>
@@ -10,4 +10,4 @@ function Forms() {
     )
 }
 
-export default Forms
+export default FormsReserve

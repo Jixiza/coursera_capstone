@@ -27,7 +27,7 @@ function Header(props) {
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting 
       industry. Lorem Ipsum has been the industry's standard dummy 
           text ever since the 1500s</p>
-        <Button text="Order table" buttonStatus={status}/>
+        <Button text="Order table" type= "button" buttonStatus={status}/>
 
       </div>
                     <img src={ homepage_photo} alt="4 pieces of bread with seasoning are lying on the plate that staff member is holding"/>
