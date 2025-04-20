@@ -7,8 +7,8 @@ import dessert from "./assets/lemon_dessert.jpg"
 import johanes from "./assets/johanes.jpg"
 import matilda from "./assets/matilda.jpg"
 import rosalinde from "./assets/rosalinde.jpg"
-import owners1 from "./assets/Mario_and_Adrian_a.jpg"
-import owners2 from "./assets/Mario_and_Adrian_b.jpg"
+import owners1 from "./assets/Mario_and_Adrian_a.png"
+import owners2 from "./assets/Mario_and_Adrian_b.png"
 
 
 const menu = {
@@ -61,10 +61,10 @@ function Home(props) {
   }
 
         return (
-            <main>
+            <main id="home">
                 <section id="highlights">
                     <div id="container1">
-                    <h2>Specials</h2>
+                    <h2>This week specials</h2>
                     <Button text="Online menu" type="button"buttonStatus={goNone}/>
                     </div>
                     <div id="container2"> 

@@ -32,41 +32,53 @@ const [submit,setSubmit] = useState("forms")
 
         props.buttonStatus(submit);
     }
-    let tmp;
-    let tmp1;
+    // let tmp;
+    // let tmp1;
   
-        if (areAllFieldsValid())
-            tmp = "true"
-        else if (!areAllFieldsValid())
-            tmp = "false"
-        else
-            tmp = "undefined"
+    //     if (areAllFieldsValid())
+    //         tmp = "true"
+    //     else if (!areAllFieldsValid())
+    //         tmp = "false"
+    //     else
+    //         tmp = "undefined"
     
     
-            if (isNameValid())
-            tmp1 = "true"
-        else if (!isNameValid())
-            tmp1 = "false"
-        else
-            tmp1 = "undefined"
+    //         if (isNameValid())
+    //         tmp1 = "true"
+    //     else if (!isNameValid())
+    //         tmp1 = "false"
+    //     else
+    //         tmp1 = "undefined"
 
     return (
         <main>
-            <section>
-                <p>Date of your reservation: { props.data.date}</p>
-                <p>Time of your reservation: { props.data.time}</p>
-                <p>Number of invited persons: { props.data.persons}</p>
-                <p>Chosen occasion: { props.data.occasion}</p>
+            <section id="userData">
+                <div>
+                {/* <p><span> Date of your reservation:</span><span> { props.data.date}</span></p>
+                <p><span>Time of your reservation:</span><span> { props.data.time}</span></p>
+                <p><span>Number of invited persons:</span><span> { props.data.persons}</span></p>
+                    <p><span>Chosen occasion:</span><span> {props.data.occasion}</span></p> */}
+                    <p> Date of your reservation: </p>
+                <p>Time of your reservation:</p>
+                <p>Number of invited persons: </p>
+                    <p>Chosen occasion: </p>
+                </div>
+                <div>
+                    <p>{ props.data.date}</p>
+                    <p>{ props.data.time}</p>
+                    <p>{ props.data.persons}</p>
+                    <p>{props.data.occasion}</p>
+                </div>
             </section>
             <section>
-                <p>We would ask for your name, e-mail and phone number so we can contact you in case of any changes</p>
-                <p>all = {tmp}</p>
-                <p>name = { tmp1}</p>
-                <form onSubmit={handleSubmit}>
-
+                <h4>We would ask for your name, e-mail and phone number so we can contact you in case of any changes</h4>
+                {/* <p>all = {tmp}</p>
+                <p>name = { tmp1}</p> */}
+                <form onSubmit={handleSubmit} id="selectorInfo">
+<div>
                     <FormField
-                        id="selectorInfo"
-        label="Please enter your name" 
+                        
+        label="Please enter your name:" 
         htmlFor="name" 
         hasError={!isNameValid()} 
         errorMessage={invalidNameErrorMessage}
@@ -74,7 +86,8 @@ const [submit,setSubmit] = useState("forms")
         <input 
           type="text" 
           id="name" 
-        name="name"
+                            name="name"
+                            aria-label="type your name"
             placeholder="name"                    
           maxLength={30} 
           value={formData.name} 
@@ -82,13 +95,12 @@ const [submit,setSubmit] = useState("forms")
           onChange={e => setFormData({...formData, name: e.target.value})}
         />
       </FormField>
+</div>
 
-                    {/* <label for="name">Please enter your name</label>
-                    <input type="text" id="name" required={true} placeholder="Name" /> */}
                     
-
+<div>
                     <FormField 
-        label="Please enter your email" 
+        label="Please enter your email:" 
         htmlFor="email" 
         hasError={!isEmailValid()} 
         errorMessage={invalidEmailErrorMessage}
@@ -96,19 +108,20 @@ const [submit,setSubmit] = useState("forms")
         <input 
           type="email" 
           id="email" 
-          name="email" 
+                            name="email"
+                            aria-label="type your email"
                     placeholder="E-mail"
           value={formData.email} 
           required={true} 
           onChange={e => setFormData({...formData, email: e.target.value})}
         />
       </FormField>
-                    {/* <label for="email">Please enter your e-mail</label>
-                    <input type="email" id="email" required={true} placeholder="E-mail" /> */}
+</div>
                     
-
+<div>
                     <label  for="phoneNum">Please enter your phone number (optional)</label>
-                    <input type="tel" id="phoneNum" placeholder="Phome humber"/>
+                    <input aria-label="type your phone number, it's optional" type="tel" id="phoneNum" placeholder="Phone humber"/>
+                    </div>
                     <Button text="Confirm" type="submit" buttonStatus={goHome}  disabled={!areAllFieldsValid()}/>
                 </form>
             </section>

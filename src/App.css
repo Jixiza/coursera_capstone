@@ -9,9 +9,13 @@ nav {
     justify-content: space-evenly;
 
 }
-nav a {
+nav a, footer a {
     text-decoration: none;
     
+}
+
+nav a:hover {
+  text-shadow: 0.5px 0.5px 0.5px #495e57;
 }
 nav a:link, nav a:visited {
   color: #495e57;
@@ -26,7 +30,7 @@ header {
   background-color: #495e57;
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  padding: 10px 25%;
 
 
 }
@@ -34,12 +38,13 @@ header h1 {
   font-size: 64pt;
   font-family: "Markazi text";
   color: #f4ce14;
-  margin-top: 0%;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 header h3 {
  font-size: 20pt;
- margin-top: -10%;
+ margin-top: -20px;
  color: #edefee;
 }
 
@@ -47,15 +52,28 @@ header p {
   max-width: 50vw;
   color: #edefee
 }
-
-header img {
- max-height: 300px;
- align-items: flex-end;
+#homeHeader{
+  max-height: 350px;
 }
 
+#homeHeader img {
+ max-height: 400px;
+ border-radius: 40pt;
+ margin-top: 25px;
+ /* align-items: flex-end; */
+ /* position: absolute; */
+ /* margin-right: -300px; */
+ /* padding-right: -30%; */
+}
+#homeHeader div{
+  max-width: 500px;
+  /* padding: 250px 0px; */
+  margin: 0px 10%;
+  /* margin-left: -30%; */
+
+}
 #button {
-  /* width: 200px; */
-  /* height: 40px; */
+
   display: inline-block;
   background-color: #f4ce14;
   border-radius: 16pt;
@@ -64,14 +82,34 @@ header img {
   color: #495e57;
   font-family: "Karla";
   font-weight: 600;
-  /* padding-top: 10px; */
-  /* padding-bottom: 0px; */
    padding: 10px 20px; 
-  /* margin: 20px; */
+    border: 2px solid #333333;
+      transition-duration: 0.2s;
+  outline: none;
 }
 
 
+
+#button:hover{
+  /* box-shadow: 2px 2px 4px #f4ce14; */
+    background-color: #fbdabb;
+  color: #495e57;
+  cursor: pointer;
+}
+
+#button:disabled{
+  background-color: #edefee;
+}
+#button:disabled:hover{
+  background-color: #edefee;
+  cursor: default;
+}
+
 /* ------------------------------ */
+
+section {
+  padding: 10px 20%;
+}
 
 #highlights {
   
@@ -79,13 +117,14 @@ header img {
     padding: 10px;
     color: #495e57;
     margin-bottom: 20px;
+    margin-top: 40px;
 
 }
 #container1 {
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
-   margin: 20px 10px;
+   margin: 40px 10%;
 }
 #container2 {
   display: flex;
@@ -131,7 +170,7 @@ header img {
 }
 
 #testimElems > img{
-  width: 100%;
+  width: 50%;
   border-radius: 50%;
 }
 
@@ -172,7 +211,7 @@ margin-top: -15px;
 }
 
 #about img{
-  height: 200px;
+  height: 270px;
 
   border-radius: 40pt;
 }
@@ -185,10 +224,21 @@ margin-top: -15px;
 
 #arrow {
   display: inline-block;
-   /* margin-left: -90%;
-   margin-top: 10px;  */
+  transition-duration: 0.2s;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  margin: 20px;
 
 
+
+}
+
+#arrow:hover{
+  cursor: pointer;
+  /* box-shadow:5px 5px 5px #edefee; */
+  border: 2px solid #edefee;
 }
 
 
@@ -197,10 +247,15 @@ margin-top: -15px;
  
 }
 
-/* #resDateTime{
-  display: flex;
-    justify-content: space-evenly;
-} */
+#resDateTime{
+  display: flex; 
+    justify-content:space-evenly; 
+
+}
+
+#resDateTime select, input{
+  margin-left: 10px;
+}
 
 #ordertitle {
 
@@ -213,9 +268,13 @@ margin-top: -15px;
 display: flex;
     justify-content: space-evenly;
     text-align: center;
+    font-size: 16pt;
+    color: #495e57;
+    margin-bottom: 20pt;
  
 
 }
+
 #ordertitle h2 {
   color: #333333;
     font-size: 20pt;
@@ -225,35 +284,80 @@ display: flex;
     font-size: 16pt;
 }
 
+#PersonSelector {
+    margin-top: 25px;
+}
+
 #PersonSelector input {
   border-radius: 25pt;
   width: 40px;
+  height: 40px;
+  margin: 0px 20px;
+  text-align: center;
+  font-size: 15pt;
+  font-family: "Karla";
+  color: #495e57;
+  font-weight: bold;
+  background-color: #edefee;
 }
+
+#PersonSelector input:hover {
+  background-color: white;
+}
+
+#PersonSelector #button {
+
+  font-size: 20pt;
+  font-weight: 900;
+
+}
+
+#PersonSelector #button:focus {
+  border: 2px solid #333333;
+
+}
+/* #PersonSelector #button:hover{ 
+  cursor: pointer;
+} */
+ #res-date, #res-time, #occasion {
+  border-radius: 25pt;
+  font-size: 15pt;
+  font-family: "Karla";
+  height: 40px;
+  color: #495e57;
+  text-align: center;
+  font-weight: bold;
+  background-color: #edefee;
+  transition-duration: 0.2s;
+}
+#res-date:focus, #res-time:focus, #occasion:focus{
+  border: 2px solid #333333;
+}
+
+#res-date:hover, #res-time:hover, #occasion:hover{
+  background-color: white;
+  cursor: pointer;
+}
+
 #PersonSelector input::placeholder{
   text-align: center;
-}
-
-#selectorInfoBlank{
-  /* margin-top: 0px; */
 
 }
+
+
 
 #selectorInfoBlankGen {
   display: block;
-  /* margin-top: 100px; */
+
   padding-top: 0px;
 }
 
 #selectorInfoGen {
   display: block;
-/* margin-top: 100px */
+
 }
 
-#selectorInfo{
-  display: block;
-  margin-top: 50px;
-  height: 100px;
-}
+
 
 #infoText{
   margin: 0px;
@@ -261,9 +365,8 @@ display: flex;
 }
 
 #infoTextGuests {
-  /* margin: 0px;
-  padding: 0px; */
-  height: 25px;
+
+  height: 15px;
 }
 
 #PersonSelector input[type=number]::-webkit-inner-spin-button,
@@ -283,9 +386,51 @@ display: flex;
   font-style: bold;
 }
 
+#occasionBlock {
+  margin-top: 30pt;
+  margin-bottom: 30pt;
+}
+
+#occasion{
+   margin-left: 10px;
+}
+
+#formHeader h2{
+  margin-top: 60pt;
+  font-family: "Markazi text";
+  color: #edefee;
+  font-size: 40pt;
+}
+
+#formHeader h4{
+  font-size: 16pt;
+  color: #fbdabb;
+  font-family: "Karla";
+}
+#userData {
+  display: flex;
+  justify-content: start;
+  padding-top: 40px;
+  color: #495e57;
+  font-size: 16pt;
+}
+
+#userData div{
+  padding: 0px 20px;
+}
+
+#selectorInfo div{
+  /* display: flex;
+  justify-content: space-between; */
+  /* margin: 10px;
+  padding: 10px; */
+  /* align-items: flex-end;
+  align-content: space-between; */
+}
+
 footer {
   display: flex;
-  padding: 20px;
+  padding: 20px 15%;
   background-color: #495e57;
   justify-content: space-evenly;
 }
@@ -308,6 +453,10 @@ footer li {
 
 footer a:link, footer a:visited {
       color: #edefee;
+}
+
+footer a:hover {
+  text-shadow: 0.5px 0.5px 0.5px #edefee;
 }
 
 #none {

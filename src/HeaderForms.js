@@ -21,10 +21,10 @@ function HeaderOrder(props) {
 
   return (
     <header>
-      <div >
+      <div id="formHeader">
         <BackButton buttonStatus={status} />
               <h2>Confirm your reservation</h2>
-              <h3>Please check again your reseravtions info and send its details</h3>
+              <h4>Please check again your reseravtions info and send its details</h4>
        </div>
     </header>
   );

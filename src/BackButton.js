@@ -8,7 +8,7 @@ function BackButton(props) {
     return props.buttonStatus(buttonStatus)
   }
     return(
-    <div id="arrow" onClick={handleClick}>
+    <div id="arrow" onClick={handleClick} aria-label="to previous screen">
         <img src={ arrow} alt="green arrow in yellow circle"/>
     </div>
     )

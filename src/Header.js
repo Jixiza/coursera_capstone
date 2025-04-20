@@ -1,4 +1,4 @@
-import homepage_photo from "./assets/restauranfood.jpg"; 
+import homepage_photo from "./assets/restauranfood.png"; 
 import Button from "./Button.js";
 
 
@@ -20,8 +20,8 @@ function Header(props) {
 
 
   return (
-    <header>
-      <div>
+    <header id="homeHeader">
+      <div >
         <h1 >Little Lemon</h1>
       <h3>Chicago</h3>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting 
@@ -30,7 +30,7 @@ function Header(props) {
         <Button text="Order table" type= "button" buttonStatus={status}/>
 
       </div>
-                    <img src={ homepage_photo} alt="4 pieces of bread with seasoning are lying on the plate that staff member is holding"/>
+                  <div>  <img src={ homepage_photo} alt="4 pieces of bread with seasoning are lying on the plate that staff member is holding"/></div>
        
 
     </header>

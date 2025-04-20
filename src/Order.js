@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
 import { fetchAPI, submitAPI } from './fakeAPI.js';
-import FormField from './FormField.js';
+// import FormField from './FormField.js';
 import Button from './Button.js'
 
 
@@ -56,22 +56,19 @@ const updateTimes = (availableTimes, date) => {
     }
 
 
-    const [info, setInfo] = useState({
-        blankInfo: "selectorInfoBlank",
-        textInfo: " ",
-    });
+    const [info, setInfo] = useState(" ");
     const handleChange = (event) => {
 
         if (event.target.value >= 0 && event.target.value <= 10) {
             if (event.target.value == 0)
-                setInfo({ ...info, textInfo: "Number of guests cannot be 0", blankInfo: "selectorInfo" });
-            setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
+                setInfo("Number of guests cannot be 0");
+            setInfo(" ");
             
             setOrder({...order, persons: event.target.value});
             
         }
         else if (event.target.value < 0 || event.target.value > 10)
-            setInfo({ ...info, textInfo: "Currently we have only tables for 10 persons", blankInfo: "selectorInfo" });
+            setInfo("Currently we have only tables for 10 persons");
     }
 
     const handleDateChange = (e) => {
@@ -97,10 +94,10 @@ const updateTimes = (availableTimes, date) => {
             if (order.persons < 10) {
                 let tmp = +order.persons + 1;
               setOrder({ ...order, persons: tmp })
-              setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
+              setInfo(" ");
             }
             else if (order.persons == 10) {
-                setInfo({ ...info, textInfo: "Currently we have only tables for 10 persons", blankInfo: "selectorInfo" });
+                setInfo("Currently we have only tables for 10 persons");
         
             }
         }
@@ -109,13 +106,13 @@ const updateTimes = (availableTimes, date) => {
        const decr = () => {
         if (order.persons > 0) {
             if (order.persons <= 10) {
-                setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
+                setInfo(" ");
             } 
             setOrder({ ...order, persons: order.persons - 1 })
             
         }
            if (!isNumberOfGuestsValid())
-               setInfo({ ...info, textInfo: "Number of guests cannot be 0", blankInfo: "selectorInfo" });
+               setInfo("Number of guests cannot be 0");
        }
     
       const goForm = (e) => {
@@ -137,27 +134,27 @@ const updateTimes = (availableTimes, date) => {
             <p>test2 = {order.date }</p> */}
             <section id="orderForm">
 
-                <form onSubmit={sendData}> 
-                    <div id="resDateTime">
-
-
-          
+          <form onSubmit={sendData} >
+            <p>Choose the date and time of your reservation</p>
+            <div id="resDateTime">
+              
+              <div>
+              <label for="res-date">Date</label>
         <input 
           type="date" 
           id="res-date" 
           name="res-date" 
- 
+            aria-label="reservation date selection"
           value={order.date} 
           required={true} 
           onChange={handleDateChange}
-        />
-
-
-
-
+                /></div>
+              <div>
+              <label for="res-time">Time</label>
         <select 
           id="res-time" 
-          name="res-time" 
+                name="res-time"
+                aria-label="reservation time seletion"
           value={order.time} 
           required={true} 
           onChange={e => setOrder({ ...order, time: e.target.value })}
@@ -167,33 +164,22 @@ const updateTimes = (availableTimes, date) => {
               {times}
             </option>
           )}
-        </select>
-
+        </select></div>
                     </div>
-
-                <p>Select number of persons</p>
                 <div id="PersonSelector">
-          <FormField 
-        label="" 
-        htmlFor="numberOfGuests" 
-        hasError={!isNumberOfGuestsValid()} 
-        // errorMessage={info.textInfo}
-      >
-
-
-                        
-
-          <p id="infoTextGuests">{info.textInfo}</p>
-          <button onClick={decr} id={info.blankInfo} type="button">-</button>
-          <input id="numberOfGuests" required={true} placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
-          <button onClick={incr} type="button">+</button>
-         </FormField>
-                    </div>
- 
+               
+<label htmlFor="numberOfGuests" >Select number of persons</label>
+              <p id="infoTextGuests">{info}</p>
+          <button id="button" aria-label="decrese number of diners" onClick={decr}  type="button">-</button>
+          <input aria-label="type number of diners" id="numberOfGuests" required={true} placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
+          <button id="button" aria-label="increase number of diners" onClick={incr} type="button">+</button>
+            </div>
+            <div id="occasionBlock">
                     <label for="occasion">Occasion</label>
         <select 
           id="occasion" 
-          name="occasion" 
+              name="occasion"
+              aria-label="select occasion of reservation"
           value={order.occasion} 
           onChange={e => setOrder({...order, occasion: e.target.value})}
         >
@@ -202,7 +188,7 @@ const updateTimes = (availableTimes, date) => {
               {occasion}
             </option>
           )}
-        </select>
+        </select></div>
                             
                     <Button text="Make Your reservation" type="submit" buttonStatus={goForm}  disabled={!areAllFieldsValid()}/>
                 </form>
