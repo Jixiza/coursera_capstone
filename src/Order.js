@@ -1,22 +1,59 @@
 import { useState } from 'react';
-
-
+import { useReducer } from 'react';
+import { fetchAPI } from './fakeAPI.js';
+import FormField from './FormField.js';
 import Button from './Button.js'
 
 
 
-function Order() {
+function Order(props) {
+
+    // --------------------------
+
+     const isNumberOfGuestsValid = () => order.persons != 0;
+
+
+    const occasions = ['none', 'Birthday', 'Anniversary', 'Engagement'];
+
+
+const updateTimes = (availableTimes, date) => {
+  const response = fetchAPI(new Date(date));
+  return (response.length !== 0) ? response : availableTimes; 
+};
+    
+    const initializeTimes = initialAvailableTimes => 
+  [...initialAvailableTimes, ...fetchAPI(new Date())];
+
+
+  const [
+    availableTimes, 
+    dispatchOnDateChange
+  ] = useReducer(updateTimes, [], initializeTimes);
+
+    
+      const areAllFieldsValid = () => isNumberOfGuestsValid() 
+
+//  ------------------------------
 
     const [order, setOrder] = useState({
         date: new Date().toISOString().substr(0, 10),
-        time: "17:00",
+        time: availableTimes[0],
         persons: 1,
-        occasion: "none",
+        occasion: occasions[0],
     })
 
+    const [submit,setSubmit] = useState("order")
+
+    const sendData = (event) => {
+        event.preventDefault();
+
+        props.dataLift(order);
+        props.buttonStatus(submit);
+    
+}
     
     
-        // const [value, setValue] = useState(1);
+
     const [info, setInfo] = useState({
         blankInfo: "selectorInfoBlank",
         textInfo: " ",
@@ -24,6 +61,8 @@ function Order() {
     const handleChange = (event) => {
 
         if (event.target.value >= 0 && event.target.value <= 10) {
+            if (event.target.value == 0)
+                setInfo({ ...info, textInfo: "Number of guests cannot be 0", blankInfo: "selectorInfo" });
             setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
             
             setOrder({...order, persons: event.target.value});
@@ -33,8 +72,13 @@ function Order() {
             setInfo({ ...info, textInfo: "Currently we have only tables for 10 persons", blankInfo: "selectorInfo" });
     }
 
+    const handleDateChange = (e) => {
+        setOrder({ ...order, date: e.target.value });
+         dispatchOnDateChange(e.target.value);
+}
+
     const clear = () => {
-        if (order.persons === 0) {
+        if (order.persons == 0) {
             setOrder({ ...order, persons: "" })
         }
     }
@@ -63,10 +107,20 @@ function Order() {
         if (order.persons > 0) {
             if (order.persons <= 10) {
                 setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
-            }
+            } 
             setOrder({ ...order, persons: order.persons - 1 })
+            
         }
+           if (!isNumberOfGuestsValid())
+               setInfo({ ...info, textInfo: "Number of guests cannot be 0", blankInfo: "selectorInfo" });
+       }
+    
+      const goForm = (e) => {
+    if (e === true) {
+       setSubmit("home");
     }
+          
+  }
 
 
 
@@ -74,45 +128,80 @@ function Order() {
         <main>
             <section id="ordertitle">
                 <h2>Order a table just in a few clicks!</h2>
-                <p>We offer you a possibility to order a table ot or inside, don't hesitate and try out our online reservation form!</p>
+                <p>We may offer you a possibility to order a table for up to 10 persons, try out our reservation form</p>
             </section>
+            {/* <p>test1 = {availableTimes}</p>
+            <p>test2 = {order.date }</p> */}
             <section id="orderForm">
-                {/* <p>date = { order.date}</p>
-                <p>time = { order.time}</p>
-                <p>persons = { order.persons}</p>
-                <p>occasion = { order.occasion}</p> */}
-                <form > 
-                <div id="resDateTime">
-                        <label for="res-date"  >Choose date</label>
 
-                        <input type="date" id="res-date" value={order.date} onChange={(e) => setOrder({ ...order, date: e.target.value })}/>
-                        <label for="res-time">Choose time</label>
-                        <select id="res-time " value={order.time} onChange={e => setOrder({ ...order, time: e.target.value })}>
-      <option value="17:00">17:00</option>
-      <option value="18:00">18:00</option>
-      <option value="19:00">19:00</option>
-      <option value="20:00">20:00</option>
-      <option value="21:00">21:00</option>
-      <option value="22:00">22:00</option>
-                        </select>
+                <form onSubmit={sendData}> 
+                    <div id="resDateTime">
+
+
+          
+        <input 
+          type="date" 
+          id="res-date" 
+          name="res-date" 
+ 
+          value={order.date} 
+          required={true} 
+          onChange={handleDateChange}
+        />
+
+
+
+
+        <select 
+          id="res-time" 
+          name="res-time" 
+          value={order.time} 
+          required={true} 
+          onChange={e => setOrder({ ...order, time: e.target.value })}
+        >
+          {availableTimes.map(times => 
+            <option data-testid="booking-time-option" key={times}>
+              {times}
+            </option>
+          )}
+        </select>
+
+                    </div>
+
+                <p>Select number of persons</p>
+                <div id="PersonSelector">
+          <FormField 
+        label="" 
+        htmlFor="numberOfGuests" 
+        hasError={!isNumberOfGuestsValid()} 
+        // errorMessage={invalidNumberOfGuestsErrorMessage}
+      >
+
+
                         
 
-                </div>
-                <p>Select number of persons</p>
-                    <div id="PersonSelector">
           <p id="infoText">{info.textInfo}</p>
           <button onClick={decr} id={info.blankInfo} type="button">-</button>
-          <input placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
+          <input id="numberOfGuests" required={true} placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
           <button onClick={incr} type="button">+</button>
-    </div>
+         </FormField>
+                    </div>
+ 
                     <label for="occasion">Occasion</label>
-                    <select id="occasion" value={order.occasion} onChange={e => setOrder({...order, occasion: e.target.value})}>
-    <option value="none">none</option>
-    <option value="Birthday">Birthday</option>
-    <option value="Anniversary">Anniversary</option>
-    <option value="Engagement">Engagement</option>
+        <select 
+          id="occasion" 
+          name="occasion" 
+          value={order.occasion} 
+          onChange={e => setOrder({...order, occasion: e.target.value})}
+        >
+          {occasions.map(occasion => 
+            <option data-testid="booking-occasion-option" key={occasion}>
+              {occasion}
+            </option>
+          )}
         </select>
-                    <Button text="Make Your reservation" type="submit"/>
+                            
+                    <Button text="Make Your reservation" type="submit" buttonStatus={goForm}  disabled={!areAllFieldsValid()}/>
                 </form>
             </section>
         </main>

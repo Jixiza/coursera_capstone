@@ -15,26 +15,25 @@ import HeaderOrder from './HeaderOrder.js';
   
 function App() {
   const [orderButton, setOrderButton] = useState("home");
-  // const [nothing,setNothing] = useState("");
   function handleClick(e){
     return setOrderButton(e) 
   }
+
   const [formData, setFormData] = useState({
     date: "",
     time: "",
-    diners: "0",
-    ocassion: "none",
+    persons: "0",
+    occasion: "none",
 });
-
 
   let block1;
   let block2;
   if (orderButton === "home") {
-    block1 = <Header buttonStatus={e => setOrderButton(e) }/>
-     block2 = <Home buttonStatus={e => setOrderButton(e) }/>
+    block1 = <Header buttonStatus={e => setOrderButton(e)} />
+    block2 = <Home buttonStatus={e => setOrderButton(e)} />
   } else if (orderButton === "order") {
-    block1 = <HeaderOrder buttonStatus={e => setOrderButton(e) }/>
-    block2 = <Order dataLift={e => setFormData(e) }/>
+    block1 = <HeaderOrder buttonStatus={e => setOrderButton(e)} />
+    block2 = <Order buttonStatus={e => setOrderButton(e)} dataLift={setFormData}/>
   } else if(orderButton === "nothing"){
     block2 = <Nothing />
    }
@@ -42,7 +41,7 @@ function App() {
   
   return (
     <>
-      <Nav buttonStatus={handleClick}/>
+      <Nav buttonStatus={handleClick} />
       {block1}
       {block2}
       <Footer buttonStatus={handleClick}/>

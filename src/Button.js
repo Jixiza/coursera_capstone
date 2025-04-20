@@ -9,9 +9,10 @@ function Button(props) {
     return props.buttonStatus(buttonStatus)
   }
   return (
-    <button type={ props.type} id="button" onClick={handleClick}>
-          <span>{props.text}</span>
+    <button type={props.type} role="button" id="button" onClick={handleClick} disabled={ props.disabled}>
+      <span>{props.text}</span>
     </button>
+    
   );
 }
 
