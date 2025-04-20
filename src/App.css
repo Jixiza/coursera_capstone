@@ -185,8 +185,8 @@ margin-top: -15px;
 
 #arrow {
   display: inline-block;
-   margin-left: -90%;
-   margin-top: 10px; 
+   /* margin-left: -90%;
+   margin-top: 10px;  */
 
 
 }
@@ -234,16 +234,33 @@ display: flex;
 }
 
 #selectorInfoBlank{
-  margin-top: 0px;
-
-}
-
-#selectorInfo{
   /* margin-top: 0px; */
 
 }
 
-#infoText {
+#selectorInfoBlankGen {
+  display: block;
+  /* margin-top: 100px; */
+  padding-top: 0px;
+}
+
+#selectorInfoGen {
+  display: block;
+/* margin-top: 100px */
+}
+
+#selectorInfo{
+  display: block;
+  margin-top: 50px;
+  height: 100px;
+}
+
+#infoText{
+  margin: 0px;
+  padding: 0px;
+}
+
+#infoTextGuests {
   /* margin: 0px;
   padding: 0px; */
   height: 25px;

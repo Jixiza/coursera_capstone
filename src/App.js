@@ -2,12 +2,14 @@ import Footer from './Footer.js';
 import Header from './Header.js';
 import Nav from './Nav.js';
 import Home from './Home.js';
+import HeaderOrder from './HeaderOrder.js';
 import Order from './Order.js';
+import HeaderForms from './HeaderForms.js'
 import FormsReserve from './FormsReserve';
 import Nothing from './Nothing.js';
 import { useState } from "react";
 import './App.css';
-import HeaderOrder from './HeaderOrder.js';
+
 
 
 
@@ -36,6 +38,9 @@ function App() {
     block2 = <Order buttonStatus={e => setOrderButton(e)} dataLift={setFormData}/>
   } else if(orderButton === "nothing"){
     block2 = <Nothing />
+  } else if (orderButton === "forms") {
+    block1 = <HeaderForms buttonStatus={e => setOrderButton(e)}/>
+    block2 = <FormsReserve buttonStatus={e => setOrderButton(e)} data={ formData}/>
    }
  
   

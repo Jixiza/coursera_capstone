@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
-import { fetchAPI } from './fakeAPI.js';
+import { fetchAPI, submitAPI } from './fakeAPI.js';
 import FormField from './FormField.js';
 import Button from './Button.js'
 
@@ -10,7 +10,7 @@ function Order(props) {
 
     // --------------------------
 
-     const isNumberOfGuestsValid = () => order.persons != 0;
+     const isNumberOfGuestsValid = () => order.persons > 0 && order.persons <= 10;
 
 
     const occasions = ['none', 'Birthday', 'Anniversary', 'Engagement'];
@@ -46,13 +46,15 @@ const updateTimes = (availableTimes, date) => {
 
     const sendData = (event) => {
         event.preventDefault();
-
-        props.dataLift(order);
+      const response = submitAPI(order);
+      if (response) {
         props.buttonStatus(submit);
+        props.dataLift(order);
+      }
+        
     
-}
-    
-    
+    }
+
 
     const [info, setInfo] = useState({
         blankInfo: "selectorInfoBlank",
@@ -94,7 +96,8 @@ const updateTimes = (availableTimes, date) => {
         if (order.persons <= 10) {
             if (order.persons < 10) {
                 let tmp = +order.persons + 1;
-                setOrder({...order, persons: tmp})
+              setOrder({ ...order, persons: tmp })
+              setInfo({ ...info, textInfo: " ", blankInfo: "selectorInfoBlank" });
             }
             else if (order.persons == 10) {
                 setInfo({ ...info, textInfo: "Currently we have only tables for 10 persons", blankInfo: "selectorInfo" });
@@ -117,7 +120,7 @@ const updateTimes = (availableTimes, date) => {
     
       const goForm = (e) => {
     if (e === true) {
-       setSubmit("home");
+       setSubmit("forms");
     }
           
   }
@@ -174,13 +177,13 @@ const updateTimes = (availableTimes, date) => {
         label="" 
         htmlFor="numberOfGuests" 
         hasError={!isNumberOfGuestsValid()} 
-        // errorMessage={invalidNumberOfGuestsErrorMessage}
+        // errorMessage={info.textInfo}
       >
 
 
                         
 
-          <p id="infoText">{info.textInfo}</p>
+          <p id="infoTextGuests">{info.textInfo}</p>
           <button onClick={decr} id={info.blankInfo} type="button">-</button>
           <input id="numberOfGuests" required={true} placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
           <button onClick={incr} type="button">+</button>

@@ -1,4 +1,4 @@
-import header_photo from "./assets/table_restaurant.jpg";
+
 import BackButton from "./BackButton";
 
 
@@ -8,7 +8,7 @@ function HeaderOrder(props) {
 
     let buttonStatus;
     if (e === true) {
-       buttonStatus = "home";
+       buttonStatus = "order";
     }
     else {
        buttonStatus = "";
@@ -21,10 +21,10 @@ function HeaderOrder(props) {
 
   return (
     <header>
-      <div id="headerOrder">
-        <img id="headerImg" src={ header_photo} alt="table standing outside with served dishes and glasses for two persons"/>
+      <div >
         <BackButton buttonStatus={status} />
-    
+              <h2>Confirm your reservation</h2>
+              <h3>Please check again your reseravtions info and send its details</h3>
        </div>
     </header>
   );
