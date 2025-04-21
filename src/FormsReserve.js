@@ -12,9 +12,11 @@ function FormsReserve(props) {
 
     const isNameValid = () => formData.name !== ""
     const isEmailValid = () => formData.email !== ""
+    const isPhoneValid = () => formData.phone.length < 15
 
-    const invalidNameErrorMessage = '"Name" is a required field';
-    const invalidEmailErrorMessage = '"E-mail" is a required field';
+    const invalidNameErrorMessage = '"Name" is a required field!';
+    const invalidEmailErrorMessage = '"E-mail" is a required field!';
+    const invalidPhoneErrorMessage = 'Please use an existing phone number';
 
 const [submit,setSubmit] = useState("forms")
     const goHome = (e) => {
@@ -71,11 +73,10 @@ const [submit,setSubmit] = useState("forms")
                 </div>
             </section>
             <section>
-                <h4>We would ask for your name, e-mail and phone number so we can contact you in case of any changes</h4>
-                {/* <p>all = {tmp}</p>
-                <p>name = { tmp1}</p> */}
+                <h5>We would ask for your name, e-mail and phone number so we can contact you in case of any changes</h5>
+
                 <form onSubmit={handleSubmit} id="selectorInfo">
-<div>
+                    <div>
                     <FormField
                         
         label="Please enter your name:" 
@@ -118,11 +119,19 @@ const [submit,setSubmit] = useState("forms")
       </FormField>
 </div>
                     
-<div>
-                    <label  for="phoneNum">Please enter your phone number (optional)</label>
-                    <input aria-label="type your phone number, it's optional" type="tel" id="phoneNum" placeholder="Phone humber"/>
+                    <div>
+                        <FormField 
+        label="Please enter your phone number (optional):" 
+        htmlFor="phoneNum" 
+        hasError={!isPhoneValid()} 
+        errorMessage={invalidPhoneErrorMessage}
+      >
+                            <input aria-label="type your phone number, it's optional" type="tel" id="phoneNum" placeholder="Phone humber" onChange={e => setFormData({...formData, phone: e.target.value})} maxLength={15}/>
+                    </FormField>
                     </div>
+               
                     <Button text="Confirm" type="submit" buttonStatus={goHome}  disabled={!areAllFieldsValid()}/>
+                    
                 </form>
             </section>
         </main>

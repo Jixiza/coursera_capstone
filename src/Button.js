@@ -9,10 +9,10 @@ function Button(props) {
     return props.buttonStatus(buttonStatus)
   }
   return (
-    <button aria-label={ props.text} type={props.type}  id="button" onClick={handleClick} disabled={ props.disabled}>
+    <a><button aria-label={ props.text} type={props.type}  id="button" onClick={handleClick} disabled={ props.disabled}>
       <span>{props.text}</span>
-    </button>
-    
+    </button></a>
+   
   );
 }
 

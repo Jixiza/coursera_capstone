@@ -1,3 +1,7 @@
+
+
+
+
 html {
   background-color: #edefee;
 }
@@ -9,8 +13,9 @@ nav {
     justify-content: space-evenly;
 
 }
-nav a, footer a {
+nav a, footer a, #specials a {
     text-decoration: none;
+         transition-duration: 0.2s;
     
 }
 
@@ -30,7 +35,8 @@ header {
   background-color: #495e57;
   display: flex;
   justify-content: space-evenly;
-  padding: 10px 25%;
+  padding: 10px 20%;
+ 
 
 
 }
@@ -60,16 +66,13 @@ header p {
  max-height: 400px;
  border-radius: 40pt;
  margin-top: 25px;
- /* align-items: flex-end; */
- /* position: absolute; */
- /* margin-right: -300px; */
- /* padding-right: -30%; */
+
 }
 #homeHeader div{
   max-width: 500px;
-  /* padding: 250px 0px; */
-  margin: 0px 10%;
-  /* margin-left: -30%; */
+
+  margin: 0px 5%;
+
 
 }
 #button {
@@ -125,21 +128,23 @@ section {
   box-sizing: border-box;
   justify-content: space-between;
    margin: 40px 10%;
+   flex-wrap: wrap;
 }
 #container2 {
   display: flex;
     box-sizing: border-box;
     justify-content: space-evenly;
-
+  flex-wrap: wrap;
 
 }
 
 
 #specials {
-  display: inline-block;
-  width: 25%;
+
+  width: 250px;
   background-color: #fbdabb;
-  
+  margin-bottom: 25px;
+
 }
 
 #specials img {
@@ -148,7 +153,36 @@ section {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+#specials div{
+  margin: 0px 20px 10px 20px;
+  display: flex;
+    flex-direction: column;
+  justify-content: space-between;
+  height: 240px;
+}
 
+#specials div h3{
+  display: flex;
+  justify-content: space-between;
+
+}
+#specials a{
+  padding: 5px;
+  width: max-content;
+  color: #495e57;
+  border-radius: 40pt;
+  border: 1px solid #495e57;
+  background-color: #f4ce14;
+}
+#specials a:hover {
+  /* text-shadow: 0.5px 0.5px 0.5px #f4ce14; */
+  /* border-radius: 40pt;
+  border: 1px solid #f4ce14; */
+  background-color: #fbdabb;
+}
+#specials a:link, #specials a:visited {
+  color: #333333;
+}
 
 /* ---------------------------- */
 
@@ -165,8 +199,8 @@ section {
 
 #testimElems {
   display: inline-block;
-  width: 25%;
-
+  width: 250px;
+  margin: 5%;
 }
 
 #testimElems > img{
@@ -186,6 +220,7 @@ margin-top: -15px;
   padding: 10px;
   justify-content: space-between;
   display: flex;
+
 }
 
 #about div{
@@ -247,6 +282,7 @@ margin-top: -15px;
  
 }
 
+
 #resDateTime{
   display: flex; 
     justify-content:space-evenly; 
@@ -301,7 +337,7 @@ display: flex;
   background-color: #edefee;
 }
 
-#PersonSelector input:hover {
+#PersonSelector input:hover, #selectorInfo input:hover {
   background-color: white;
 }
 
@@ -316,10 +352,8 @@ display: flex;
   border: 2px solid #333333;
 
 }
-/* #PersonSelector #button:hover{ 
-  cursor: pointer;
-} */
- #res-date, #res-time, #occasion {
+
+ #res-date, #res-time, #occasion, #selectorInfo input {
   border-radius: 25pt;
   font-size: 15pt;
   font-family: "Karla";
@@ -329,6 +363,11 @@ display: flex;
   font-weight: bold;
   background-color: #edefee;
   transition-duration: 0.2s;
+}
+
+#selectorInfo input{
+  width: 170px;
+  margin-top: 10px;
 }
 #res-date:focus, #res-time:focus, #occasion:focus{
   border: 2px solid #333333;
@@ -358,14 +397,14 @@ display: flex;
 }
 
 
-
+/* 
 #infoText{
   margin: 0px;
   padding: 0px;
-}
+} */
 
-#infoTextGuests {
-
+#infoText {
+  color: #333333;
   height: 15px;
 }
 
@@ -419,27 +458,54 @@ display: flex;
   padding: 0px 20px;
 }
 
+h5 {
+  font-size: 16pt;
+  color: #333333;
+  font-weight: 100;
+  margin: 0px;
+  padding: 0px;
+}
+
 #selectorInfo div{
-  /* display: flex;
-  justify-content: space-between; */
-  /* margin: 10px;
-  padding: 10px; */
-  /* align-items: flex-end;
-  align-content: space-between; */
+   display: flex;
+   flex-direction: column;
+  justify-content: space-between;
+  color: #495e57;
+
+ 
+}
+
+#formErrorMsg{
+  height: 15px;
+  font-weight: bold;
+  font-size: 14pt;
+  color: #333333;
+}
+
+
+#selectorInfo button {
+  margin-left: 70%;
+  margin-top: 20px;
 }
 
 footer {
   display: flex;
-  padding: 20px 15%;
+  padding: 20px 10%;
   background-color: #495e57;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 footer img{
   max-height: 200px;
 }
 footer div{
-  max-width: 25%; 
+  max-width: 250px; 
+  padding: 5px;
 
+}
+
+footer h3{
+  color: #fbdabb
 }
 footer li {
    list-style-type: none;
@@ -467,3 +533,50 @@ footer a:hover {
   font-family: "Markazi text";
 }
 
+@media only screen and (max-width: 600px){
+  header{
+     flex-wrap: wrap;
+
+  }
+  #homeHeader{
+    max-height: max-content;
+  }
+  #about{
+      flex-wrap: wrap;
+  }
+  #about div{
+  width: 100%;
+}
+footer{
+  padding: 20px 30%;
+  justify-content: start;
+}
+#headerImg{
+ height: 300px; 
+}
+h5 {
+  font-size: 12pt;
+}
+#infoText{
+  height:35px;
+}
+}
+@media only screen and (max-width: 450px){
+  #homeHeader img{
+    max-height: 300px;
+  }
+  #testimonials{
+    flex-wrap: wrap;
+  }
+  #about img{
+  height: 200px;
+  margin-bottom: 20px;}
+  footer{
+  padding: 20px 20%;
+  justify-content: start;
+}
+#headerImg{
+ height: 200px; 
+}
+
+}

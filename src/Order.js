@@ -1,20 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useReducer } from 'react';
 import { fetchAPI, submitAPI } from './fakeAPI.js';
-// import FormField from './FormField.js';
+
 import Button from './Button.js'
 
 
 
 function Order(props) {
 
+// const { watch } = useForm();
+// const allWatchedFormValues = watch();
+  
+
+  
+  
+
+  const todaysdate = new Date().toISOString().substr(0, 10);
     // --------------------------
 
-     const isNumberOfGuestsValid = () => order.persons > 0 && order.persons <= 10;
+  const isNumberOfGuestsValid = () => order.persons > 0 && order.persons <= 10;
+  
+  const isDateValid = () => todaysdate <= order.date;
 
 
     const occasions = ['none', 'Birthday', 'Anniversary', 'Engagement'];
 
+useEffect(() => {
+    if (!isDateValid()) 
+      setErrDate("Please select the correct date!")
+    else
+      setErrDate("")
+  if(!isNumberOfGuestsValid())
+    if (order.persons == 0)
+      setInfo("Number of guests cannot be 0!");
+  
+    
+});
+  
 
 const updateTimes = (availableTimes, date) => {
   const response = fetchAPI(new Date(date));
@@ -31,12 +53,12 @@ const updateTimes = (availableTimes, date) => {
   ] = useReducer(updateTimes, [], initializeTimes);
 
     
-      const areAllFieldsValid = () => isNumberOfGuestsValid() 
+      const areAllFieldsValid = () => isNumberOfGuestsValid() && isDateValid()
 
 //  ------------------------------
 
     const [order, setOrder] = useState({
-        date: new Date().toISOString().substr(0, 10),
+        date: todaysdate,
         time: availableTimes[0],
         persons: 1,
         occasion: occasions[0],
@@ -56,12 +78,12 @@ const updateTimes = (availableTimes, date) => {
     }
 
 
-    const [info, setInfo] = useState(" ");
+  const [info, setInfo] = useState(" ");
+  const [errDate, setErrDate] = useState("");
     const handleChange = (event) => {
 
         if (event.target.value >= 0 && event.target.value <= 10) {
-            if (event.target.value == 0)
-                setInfo("Number of guests cannot be 0");
+
             setInfo(" ");
             
             setOrder({...order, persons: event.target.value});
@@ -71,10 +93,13 @@ const updateTimes = (availableTimes, date) => {
             setInfo("Currently we have only tables for 10 persons");
     }
 
-    const handleDateChange = (e) => {
+  const handleDateChange = (e) => {
+
         setOrder({ ...order, date: e.target.value });
-         dispatchOnDateChange(e.target.value);
-}
+      dispatchOnDateChange(e.target.value);
+
+  }
+
 
     const clear = () => {
         if (order.persons == 0) {
@@ -111,8 +136,8 @@ const updateTimes = (availableTimes, date) => {
             setOrder({ ...order, persons: order.persons - 1 })
             
         }
-           if (!isNumberOfGuestsValid())
-               setInfo("Number of guests cannot be 0");
+          //  if (!isNumberOfGuestsValid())
+          //      setInfo("Number of guests cannot be 0!");
        }
     
       const goForm = (e) => {
@@ -130,15 +155,16 @@ const updateTimes = (availableTimes, date) => {
                 <h2>Order a table just in a few clicks!</h2>
                 <p>We may offer you a possibility to order a table for up to 10 persons, try out our reservation form</p>
             </section>
-            {/* <p>test1 = {availableTimes}</p>
-            <p>test2 = {order.date }</p> */}
+  
             <section id="orderForm">
 
           <form onSubmit={sendData} >
             <p>Choose the date and time of your reservation</p>
+              <p id="infoText">{errDate}</p>
             <div id="resDateTime">
-              
+            
               <div>
+                
               <label for="res-date">Date</label>
         <input 
           type="date" 
@@ -147,7 +173,7 @@ const updateTimes = (availableTimes, date) => {
             aria-label="reservation date selection"
           value={order.date} 
           required={true} 
-          onChange={handleDateChange}
+                  onChange={handleDateChange}
                 /></div>
               <div>
               <label for="res-time">Time</label>
@@ -167,13 +193,16 @@ const updateTimes = (availableTimes, date) => {
         </select></div>
                     </div>
                 <div id="PersonSelector">
-               
+              
+
+
 <label htmlFor="numberOfGuests" >Select number of persons</label>
-              <p id="infoTextGuests">{info}</p>
-          <button id="button" aria-label="decrese number of diners" onClick={decr}  type="button">-</button>
+              <p id="infoText">{info}</p>
+              <button id="button" aria-label="decrese number of diners" onClick={decr}  type="button">-</button>
           <input aria-label="type number of diners" id="numberOfGuests" required={true} placeholder="0" type="number" onChange={handleChange} onFocus={clear} onBlur={ def} value={ order.persons} />
           <button id="button" aria-label="increase number of diners" onClick={incr} type="button">+</button>
-            </div>
+          
+           </div>
             <div id="occasionBlock">
                     <label for="occasion">Occasion</label>
         <select 
